@@ -1,6 +1,6 @@
 {
     "name": "json-schema-merger",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "create and merge json schemas from objects",
     "main": "index.js",
     "author": "jonathan heindl",
