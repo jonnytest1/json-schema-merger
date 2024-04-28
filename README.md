@@ -1,6 +1,6 @@
 # json-schema-merger
 create json schema from pojo and merge schemas
-
+https://www.npmjs.com/package/json-schema-merger
 
 
 ## create Schema
@@ -93,3 +93,8 @@ a dot separated path string
 ```
 
 if `enumKeyList` is passed it will be filled with all found object paths (and can be used to generate the param list)
+
+
+
+## TODO:
+- add more types to the schema and merging
