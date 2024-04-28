@@ -15,3 +15,13 @@ export type MergeSchemaOptions = {
         [key: `mergeLength_${string}`]: number
     }
 }
+
+
+export interface ValidationContext {
+    path?: Array<string>
+    target: ExtendedJsonSchema,
+    assigning: ExtendedJsonSchema,
+
+    initialTarget?: ExtendedJsonSchema,
+    initialAssigning?: ExtendedJsonSchema
+}
