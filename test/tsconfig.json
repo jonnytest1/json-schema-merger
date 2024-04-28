@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "rootDir": "..",
+        "paths": {
+            "@lib": [
+                "../src/index.ts"
+            ]
+        }
+    }
+}
