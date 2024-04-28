@@ -95,6 +95,25 @@ a dot separated path string
 if `enumKeyList` is passed it will be filled with all found object paths (and can be used to generate the param list)
 
 
+## Schema Validation
+
+let say you have a schema defining what is allowed as an input
+and a schema defining what is provided to that input
+
+then u can use 
+
+
+
+```ts
+validateJsonSchemas({
+    assigning:providingSchema
+    target:inputSchema
+})
+```
+then if the providing schema cannot be assigned (isnt a subset) of the inputSchema it will throw an error
+
 
 ## TODO:
 - add more types to the schema and merging
+
+
