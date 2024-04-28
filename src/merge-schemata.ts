@@ -11,6 +11,11 @@ function getLimitForPath(opts: MergeSchemaOptions): number {
 }
 
 export function mergeSchema(opts: MergeSchemaOptions): ExtendedJsonSchema {
+    if (opts.path === undefined) {
+        opts.path = []
+    }
+
+
     const old = opts.old
     const newSchema = opts.new
 
@@ -126,7 +131,7 @@ export function mergeSchema(opts: MergeSchemaOptions): ExtendedJsonSchema {
                     old.merged = true
                     delete old.enum
                 } else {
-                    opts.enumKeyList.push(opts.path.join("."))
+                    opts.enumKeyList?.push(opts.path.join("."))
                 }
 
             }
@@ -142,7 +147,7 @@ export function mergeSchema(opts: MergeSchemaOptions): ExtendedJsonSchema {
                     old.merged = true
                     delete old.enum
                 } else {
-                    opts.enumKeyList.push(opts.path.join("."))
+                    opts.enumKeyList?.push(opts.path.join("."))
                 }
             } else {
                 debugger
