@@ -1,3 +1,5 @@
 export * from "./create-schema"
 export * from "./merge-schemata"
 export type * from "./type"
+export * from "./schema-validation"
+export * from "./schema-matching-error"
