@@ -9,8 +9,8 @@
         "url": "https://github.com/jonnytest1/json-schema-merger"
     },
     "scripts": {
-        "build": "cd src && tsc && copyfiles ./package.json ./dist",
-        "publish": ""
+        "build": "cd src && tsc && copyfiles ../package.json ../dist",
+        "publish": "cd src && tsc && copyfiles ../package.json .-/dist && copyfiles ../README.md ../dist/README.md && npm version patch && cd ../dist && npm publish"
     },
     "dependencies": {
         "json-schema": "^0.4.0"
