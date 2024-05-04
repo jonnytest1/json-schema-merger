@@ -27,7 +27,7 @@ or in ts:
 ```ts
    type schema={test:123|456}
 ```
-if the value is a date or something hat freuently changes it should be collapsed from an enum/const/type union to a more generic type after a few emits
+if the value is a date or something hat frequently changes it should be collapsed from an enum/const/type union to a more generic type at latest after a few emits(i picked 10 as a default)
 
 
 ## create Schema
