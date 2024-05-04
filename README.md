@@ -6,7 +6,7 @@ https://www.npmjs.com/package/json-schema-merger
 ## Motivation
 
 this was part of my smarthome development
-the problem description was having an "unknown" node provide a series of json strings and then through analysis of the different jsons being able to create a schema that describes the dataset
+the problem description was having an "unknown" node provide a series of json strings and then through analysis of the different jsons being able to create a schema (https://json-schema.org/) that describes the dataset
 
 example:
 emit1:
