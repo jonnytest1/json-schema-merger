@@ -3,6 +3,33 @@ create json schema from pojo and merge schemas
 https://www.npmjs.com/package/json-schema-merger
 
 
+## Motivation
+
+this was part of my smarthome development
+the problem description was having an "unknown" node provide a series of json strings and then through analysis of the different jsons being able to create a schema that describes the dataset
+
+example:
+emit1:
+```json
+    {
+        "test":123
+    }
+```
+emit2:
+```json
+    {
+        "test":456
+    }
+```
+
+then the resulting schema should describe an object that has a test property that can be either 123 or 456
+or in ts:
+```ts
+   type schema={test:123|456}
+```
+if the value is a date or something hat freuently changes it should be collapsed from an enum/const/type union to a more generic type after a few emits
+
+
 ## create Schema
 
 create a json schema from a json object:
