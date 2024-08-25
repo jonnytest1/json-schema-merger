@@ -63,12 +63,26 @@ export function validateJsonSchemas(context: ValidationContext) {
         if (target.enum) {
             debugger
         }
-    } else if (target.type === "string") {
+    } else if (target.type === "boolean") {
         if (target.const) {
             debugger
         }
         if (target.enum) {
             debugger
+        }
+    } else if (target.type === "string") {
+        if (target.const) {
+            debugger
+        }
+        if (target.enum) {
+            if (assigning.const) {
+                if (!target.enum.includes(assigning.const)) {
+                    throw new SchemaMatchingError(context, `constant '${assigning.const}' is not part of the target enum ${target.enum.join(",")}`)
+                }
+            } else {
+
+                debugger
+            }
         }
         if (target.format) {
             debugger
