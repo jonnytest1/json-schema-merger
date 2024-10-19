@@ -80,8 +80,7 @@ export function validateJsonSchemas(context: ValidationContext) {
                     throw new SchemaMatchingError(context, `constant '${assigning.const}' is not part of the target enum ${target.enum.join(",")}`)
                 }
             } else {
-
-                debugger
+                throw new SchemaMatchingError(context, `target needs enum but 'string' might not be part of it (${target.enum.join(",")})`)
             }
         }
         if (target.format) {
