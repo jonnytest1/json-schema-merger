@@ -61,7 +61,15 @@ export function validateJsonSchemas(context: ValidationContext) {
             debugger
         }
         if (target.enum) {
-            debugger
+            if (!assigning.enum) {
+                throw new SchemaMatchingError(context, `number is not constant`)
+            }
+
+            for (const option of assigning.enum) {
+                if (!target.enum.includes(option)) {
+                    throw new SchemaMatchingError(context, `number is not part of target schema`)
+                }
+            }
         }
     } else if (target.type === "boolean") {
         if (target.const) {

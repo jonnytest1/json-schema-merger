@@ -1,3 +1,4 @@
+import { validateJsonSchemas } from './schema-validation'
 import type { ExtendedJsonSchema, MergeSchemaOptions } from './type'
 
 function getLimitForPath(opts: MergeSchemaOptions): number {
@@ -157,6 +158,28 @@ export function mergeSchema(opts: MergeSchemaOptions): ExtendedJsonSchema {
         }
         return old
     } else {
+
+        if ("oneOf" in old) {
+            let success = false
+            for (const option of old.oneOf) {
+                try {
+                    validateJsonSchemas({
+                        assigning: newSchema,
+                        target: option as ExtendedJsonSchema
+
+                    })
+                    success = true
+                } catch (e) {
+
+                }
+            }
+
+            if (success) {
+                return old
+            }
+
+        }
+
         debugger;
         return {
             oneOf: [
