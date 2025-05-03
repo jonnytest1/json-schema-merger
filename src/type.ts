@@ -13,7 +13,16 @@ export type MergeSchemaOptions = {
     params: {
         mergeLength: number,
         [key: `mergeLength_${string}`]: number
-    }
+    },
+    mergeNestedUnions?: boolean
+    /**
+     * 
+     * pass isDate: date=>moment(date,true).isValid() to use strict date parsing
+     * 
+     * @param date 
+     * @returns 
+     */
+    isDate?: (val: string) => boolean
 }
 
 

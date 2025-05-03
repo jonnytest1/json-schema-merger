@@ -7,6 +7,15 @@ export interface CreateSchemaOptions {
      * (within in the context of this package it would then be optionally removed by merging)
      */
     disableAssumeConst?: boolean
+    /**
+     * 
+     * pass isDate: date=>moment(date,true).isValid() to use strict date parsing
+     * 
+     * @param date 
+     * @returns 
+     */
+    isDate?: (date: string) => boolean
+
 }
 
 export function createSchema(schemaOBject: unknown, options: CreateSchemaOptions = {}): ExtendedJsonSchema {
@@ -30,7 +39,9 @@ export function createSchema(schemaOBject: unknown, options: CreateSchemaOptions
             schema.enum.push(schemaOBject)
         }
 
-        if (!isNaN(+new Date(schemaOBject))) {
+
+        const isDate = options.isDate ? options.isDate(schemaOBject) : !isNaN(+new Date(schemaOBject))
+        if (isDate) {
             delete schema.enum
             schema.format = "date-time"
         }

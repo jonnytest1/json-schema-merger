@@ -113,6 +113,10 @@ export function mergeSchema(opts: MergeSchemaOptions): ExtendedJsonSchema {
             debugger
         } else if (old.type == "string") {
             if (old.format !== newSchema.format) {
+                if (!old.format || !newSchema.format) {
+                    delete old.format
+                    delete newSchema.format
+                }
                 debugger;
             }
             if (old.merged) {
@@ -121,7 +125,12 @@ export function mergeSchema(opts: MergeSchemaOptions): ExtendedJsonSchema {
             if (old.enum && newSchema.enum) {
                 old.enum = [...new Set([...old.enum, ...newSchema.enum])]
 
-                if (old.enum.every(val => typeof val == "string" && !isNaN(+new Date(val)))) {
+                if (old.enum.every(val => {
+                    if (opts.isDate) {
+                        return opts.isDate(val as string)
+                    }
+                    return typeof val == "string" && !isNaN(+new Date(val))
+                })) {
                     old.format = "date-time"
                 } else {
                     delete old.format
@@ -134,8 +143,8 @@ export function mergeSchema(opts: MergeSchemaOptions): ExtendedJsonSchema {
                 } else {
                     opts.enumKeyList?.push(opts.path.join("."))
                 }
-
             }
+            return old;
         } else if (old.type == "number") {
             if (old.merged) {
                 return old
@@ -158,10 +167,14 @@ export function mergeSchema(opts: MergeSchemaOptions): ExtendedJsonSchema {
         }
         return old
     } else {
-
+        let options: Array<ExtendedJsonSchema> = []
         if ("oneOf" in old) {
             let success = false
             for (const option of old.oneOf) {
+                if ("oneOf" in (option as ExtendedJsonSchema) && opts.mergeNestedUnions) {
+
+                }
+
                 try {
                     validateJsonSchemas({
                         assigning: newSchema,
